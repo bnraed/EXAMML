@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estimation du Prix - Maison</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Style personnalisé -->
+  <style>
+    body {
+      background-color: #eef2f7;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      padding-top: 70px;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: #4e73df !important;
+    }
+
+    .nav-link {
+      color: #2c3e50 !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: #4e73df !important;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      border: 1px solid #ced4da;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+      border-color: #4e73df;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #4e73df, #667eea);
+      color: white;
+      padding: 15px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 12px;
+      width: 100%;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #3b5dd9, #556cd6);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #4e73df, #667eea);
+      color: white;
+      font-weight: bold;
+      border-radius: 15px 15px 0 0;
+      padding: 20px;
+      font-size: 1.25rem;
+    }
+
+    .card-body {
+      padding: 25px;
+      background-color: #fff;
+      border-radius: 0 0 15px 15px;
+      animation: fadeIn 1s forwards;
+    }
+
+    .alert {
+      background-color: #48c9b0;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    .alert h3 {
+      font-size: 2em;
+      margin: 0;
+    }
+
+    footer {
+      background-color: #4e73df;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="fas fa-home me-2"></i>Estimation Maison</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#">Formulaire</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resultats">Résultats</a></li>
+        <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Contenu principal -->
+<div class="container">
+  <h1 class="text-center mb-4">Estimation du prix d'une maison</h1>
+
+  <form method="POST" class="mb-5">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-control" name="location" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Ville</label>
+        <input type="text" class="form-control" name="city" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Gouvernorat</label>
+        <input type="text" class="form-control" name="governorate" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Surface (m²)</label>
+        <input type="number" class="form-control" name="area" required />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Nombre de pièces</label>
+        <input type="number" class="form-control" name="pieces" required />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Nombre de chambres</label>
+        <input type="number" class="form-control" name="room" required />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Nombre de salles de bain</label>
+        <input type="number" class="form-control" name="bathroom" required />
+      </div>
+    </div>
+    <button type="submit" class="btn-submit">Prédire le prix</button>
+  </form>
+
+  {% if predicted_price %}
+  <div id="resultats">
+    <div class="alert alert-success text-center">
+      <h3>Prix estimé : {{ predicted_price }} TND</h3>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Graphique de la relation entre Surface et Prix
+      </div>
+      <div class="card-body">
+        <img src="data:image/png;base64,{{ img_data.scatter }}" alt="Scatter Plot" class="img-fluid" />
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Distribution des prix
+      </div>
+      <div class="card-body">
+        <img src="data:image/png;base64,{{ img_data.histogram }}" alt="Histogram" class="img-fluid" />
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Distribution des prix par Gouvernorat
+      </div>
+      <div class="card-body">
+        <img src="data:image/png;base64,{{ img_data.boxplot }}" alt="Box Plot" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <div class="container">
+    <p>© 2025 Estimation Maison — Tous droits réservés</p>
+    <p class="small">Développé avec 💙 en Tunisie</p>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelector('form').addEventListener('submit', function () {
+    const submitButton = document.querySelector('.btn-submit');
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Chargement...';
+  });
+
+  const plots = document.querySelectorAll('.plotly-chart');
+  plots.forEach(function (plot) {
+    plot.style.opacity = 0;
+    plot.animate(
+      [
+        { opacity: 0, transform: 'scale(0.8)' },
+        { opacity: 1, transform: 'scale(1)' },
+      ],
+      {
+        duration: 800,
+        fill: 'forwards',
+      }
+    );
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord - Prédiction de Prix Immobilier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 30px;
+        }
+        .container {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .stats {
+            margin-top: 20px;
+        }
+        .chart {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .menu {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .menu a {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <a href="/">Estimation du prix</a>
+            <a href="/dashboard">Tableau de bord</a>
+        </div>
+
+        <h2>Tableau de bord</h2>
+        
+        <div class="stats">
+            <p>Prix moyen : {{ price_mean }} TND</p>
+            <p>Prix médian : {{ price_median }} TND</p>
+            <p>Surface moyenne : {{ avg_area }} m²</p>
+            <p>Top 5 des villes :</p>
+            <ul>
+                {% for city, count in top_cities.items() %}
+                    <li>{{ city }}: {{ count }} biens</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="chart">
+            <h3>Distribution des prix</h3>
+            <img src="{{ url_for('static', filename='price_distribution.png') }}" alt="Distribution des prix" width="600">
+        </div>
+
+        <div class="chart">
+            <h3>Nombre de biens par gouvernorat</h3>
+            <img src="{{ url_for('static', filename='count_by_governorate.png') }}" alt="Nombre de biens par gouvernorat" width="600">
+        </div>
+    </div>
+</body>
+</html>
