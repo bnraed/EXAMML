@@ -159,6 +159,12 @@
         <li class="nav-item"><a class="nav-link active" href="#">Formulaire</a></li>
         <li class="nav-item"><a class="nav-link" href="#resultats">Résultats</a></li>
         <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+        <!-- Bouton de déconnexion -->
+        <li class="nav-item ms-3">
+          <form method="POST" action="/logout">
+            <button type="submit" class="btn btn-outline-danger btn-sm">Déconnexion</button>
+          </form>
+        </li>
       </ul>
     </div>
   </div>
@@ -172,35 +178,36 @@
     <div class="row">
       <div class="col-md-6 mb-3">
         <label class="form-label">Location</label>
-        <input type="text" class="form-control" name="location" required />
+        <input type="text" class="form-control" name="location" value="{{ location }}" required />
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label">Ville</label>
-        <input type="text" class="form-control" name="city" required />
+        <input type="text" class="form-control" name="city" value="{{ city }}" required />
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label">Gouvernorat</label>
-        <input type="text" class="form-control" name="governorate" required />
+        <input type="text" class="form-control" name="governorate" value="{{ governorate }}" required />
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label">Surface (m²)</label>
-        <input type="number" class="form-control" name="area" required />
+        <input type="number" class="form-control" name="area" value="{{ area }}" required />
       </div>
       <div class="col-md-4 mb-3">
         <label class="form-label">Nombre de pièces</label>
-        <input type="number" class="form-control" name="pieces" required />
+        <input type="number" class="form-control" name="pieces" value="{{ pieces }}" required />
       </div>
       <div class="col-md-4 mb-3">
         <label class="form-label">Nombre de chambres</label>
-        <input type="number" class="form-control" name="room" required />
+        <input type="number" class="form-control" name="room" value="{{ room }}" required />
       </div>
       <div class="col-md-4 mb-3">
         <label class="form-label">Nombre de salles de bain</label>
-        <input type="number" class="form-control" name="bathroom" required />
+        <input type="number" class="form-control" name="bathroom" value="{{ bathroom }}" required />
       </div>
     </div>
     <button type="submit" class="btn-submit">Prédire le prix</button>
   </form>
+  
 
   {% if predicted_price %}
   <div id="resultats">
@@ -242,7 +249,7 @@
 <footer id="footer">
   <div class="container">
     <p>© 2025 Estimation Maison — Tous droits réservés</p>
-    <p class="small">Développé avec 💙 en Tunisie</p>
+    <p class="small">Développé en Tunisie</p>
   </div>
 </footer>
 
